@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 # Bingo Game
 
-
 # Define the list Pulled Numbers
 def pull(arr):
 	pulled = []
@@ -40,11 +39,22 @@ def marknumbers(number, grill_t):
 
 # verify if we have a row or column of int (Bingo !)
 def verify(grill_t):
-	
-
-
-
-
+	line = 0
+	column = 0
+	for x in range(len(grill_t)):
+		for y in range(len(grill_t[x])):
+			for z in range(len(grill_t[x][y])):
+				if isinstance(grill_t[x][z][y], int) == 1:
+					line += 1
+				else:
+					break
+			if line == 5 :
+				print("bingo") 
+				print(grill_t[x])
+				exit()
+			else :
+				line = 0
+			
 getput = []
 with open("input", "r") as file:
 	for line in file:
