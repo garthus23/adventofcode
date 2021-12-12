@@ -45,15 +45,25 @@ def verify(grill_t):
 		for y in range(len(grill_t[x])):
 			for z in range(len(grill_t[x][y])):
 				if isinstance(grill_t[x][z][y], int) == 1:
+					column += 1
+				else:
+					break
+			if column == 5 :
+				return(grill_t[x])
+			else :
+				column = 0
+
+	
+			for u in range(len(grill_t[x][y])):
+				if isinstance(grill_t[x][y][u], int) == 1:
 					line += 1
 				else:
 					break
 			if line == 5 :
-				print("bingo") 
-				print(grill_t[x])
-				exit()
-			else :
+				return(grill_t[x])
+			else:
 				line = 0
+
 			
 getput = []
 with open("input", "r") as file:
@@ -67,5 +77,16 @@ grill_t = grills(row)
 
 
 for number in pulled:
+	called = number
 	grill_t = marknumbers(int(number), grill_t)
-	verify(grill_t)
+	result = verify(grill_t)
+	if result:
+		break
+
+bingo = 0
+for x in range(len(result)) :
+	for y in range(len(result[x])):
+		if isinstance(result[x][y], str) == 1:
+			bingo += int(result[x][y])
+
+print(bingo*int(called))
